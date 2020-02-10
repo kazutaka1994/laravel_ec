@@ -1,0 +1,11 @@
+.item__image {
+  width: 120px;
+}
+.item__image img{
+  width: 100%;
+  border: solid 1px #cccccc;
+}
+
+th{
+    text-align:center;
+}
