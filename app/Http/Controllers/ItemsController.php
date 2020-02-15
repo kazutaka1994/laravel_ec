@@ -55,11 +55,20 @@ class ItemsController extends Controller
 
         return redirect('items');
     }
-    
+
     public function destroy($id){
         $item = \App\item::find($id);
         $item->delete();
 
         return redirect('items');
+    }
+
+    public function update(Request $request){
+        $item = \App\item::find($request->id);
+        $item->stock = $request->stock;
+
+        $item->update();
+
+        return redirect('/items');
     }
 }
