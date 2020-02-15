@@ -67,12 +67,13 @@
                 <th>商品名</th> 
                 <th>価格</th>
                 <th>在庫数</th>
+                <th>商品ステータス</th>
                 <th>商品削除</th>
             </tr>
         </thead>
         <tbody>
             @forelse($items as $item)
-                @if($item->status === 0)
+                @if($item->status === 0 or 1)
                 <tr>
                     <td>
                         <div class="item__image">
@@ -86,9 +87,23 @@
                     <td>
                         <form method="post" action="{{url('/update_item')}}">
                             {{ csrf_field() }}
-                            <input type="text" value="{{ $item->stock }}" name="stock">
+                            <input type="text" name="stock" value="{{ $item->stock }}">
                             <input type="hidden" name="id" value="{{ $item->id }}">
                             <input type="submit" value="在庫数変更" class="btn btn-primary">
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{{url('/update_status')}}">
+                            {{ csrf_field() }}
+                            @if($item->status === 0)
+                                <input type="hidden" name="status" value=1>
+                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                <input type="submit" value="公開">
+                            @elseif($item->status === 1)
+                                <input type="hidden" name="status" value=0>
+                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                <input type="submit" value="非公開">
+                            @endif
                         </form>
                     </td>
                     <td>

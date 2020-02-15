@@ -26,3 +26,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/update_item', 'ItemsController@update');
+
+Route::post('/update_status', 'ItemsController@update_status');
