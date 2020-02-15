@@ -20,3 +20,7 @@ Route::get('/items', 'ItemsController@index');
 Route::post('/items', 'ItemsController@store');
 
 Route::delete('/items/{id}', 'ItemsController@destroy');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

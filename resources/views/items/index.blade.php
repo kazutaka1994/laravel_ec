@@ -4,6 +4,11 @@
 
 @section('content')
     <h1>{{ $title }}</h1>
+    <p>現在のユーザー名: {{Auth::user()->name}}</p>
+    <form action="{{ url('/logout') }}" method="post">
+        {{ csrf_field() }}
+        <button type="submit">ログアウト</button>
+    </form>
 
     @foreach($errors->all() as $error)
     <p class="error">{{ $error }}</p>
