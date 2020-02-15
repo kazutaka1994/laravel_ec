@@ -69,6 +69,14 @@ class ItemsController extends Controller
 
         $item->update();
 
-        return redirect('/items');
+        return redirect('items');
+    }
+    public function update_status(Request $request){
+        $item = \App\item::find($request->id);
+        $item->status = $request->status;
+
+        $item->update();
+
+        return redirect('items');
     }
 }
