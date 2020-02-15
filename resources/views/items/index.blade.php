@@ -83,7 +83,14 @@
                     </td>
                     <td>{{ $item->name }}</td>
                     <td>{{ number_format($item->price) }}円</td> 
-                    <td>{{ $item->stock }}</td>
+                    <td>
+                        <form method="post" action="{{url('/update_item')}}">
+                            {{ csrf_field() }}
+                            <input type="text" value="{{ $item->stock }}" name="stock">
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                            <input type="submit" value="在庫数変更" class="btn btn-primary">
+                        </form>
+                    </td>
                     <td>
                         <form method="post" action="{{ url('/items/'. $item->id) }}">
                             {{ csrf_field() }}
